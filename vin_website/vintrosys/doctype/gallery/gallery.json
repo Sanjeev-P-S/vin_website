@@ -1,0 +1,146 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "field:title",
+ "creation": "2026-06-06 15:08:43.081453",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "title",
+  "categoty",
+  "description",
+  "images_section",
+  "image_1",
+  "image_kccs",
+  "column_break_ybns",
+  "image_2",
+  "image_ysrg",
+  "column_break_ilcw",
+  "image_3",
+  "image_eplw",
+  "column_break_jlkn",
+  "image_4",
+  "image_jcwi",
+  "column_break_ourw",
+  "image_5",
+  "image_fpja"
+ ],
+ "fields": [
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title",
+   "unique": 1
+  },
+  {
+   "fieldname": "categoty",
+   "fieldtype": "Select",
+   "label": "Categoty",
+   "options": "Events\nProducts\nOffice\nCustomers"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "fieldname": "images_section",
+   "fieldtype": "Section Break",
+   "label": "Images"
+  },
+  {
+   "fieldname": "image_1",
+   "fieldtype": "Attach Image",
+   "label": "Image 1"
+  },
+  {
+   "fieldname": "image_kccs",
+   "fieldtype": "Image",
+   "options": "image_1"
+  },
+  {
+   "fieldname": "column_break_ybns",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "image_2",
+   "fieldtype": "Attach Image",
+   "label": "Image 2"
+  },
+  {
+   "fieldname": "image_ysrg",
+   "fieldtype": "Image",
+   "options": "image_2"
+  },
+  {
+   "fieldname": "column_break_ilcw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "image_3",
+   "fieldtype": "Attach Image",
+   "label": "Image 3"
+  },
+  {
+   "fieldname": "image_eplw",
+   "fieldtype": "Image",
+   "options": "image_3"
+  },
+  {
+   "fieldname": "column_break_jlkn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "image_4",
+   "fieldtype": "Attach Image",
+   "label": "Image 4"
+  },
+  {
+   "fieldname": "image_jcwi",
+   "fieldtype": "Image",
+   "options": "image_4"
+  },
+  {
+   "fieldname": "column_break_ourw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "image_5",
+   "fieldtype": "Attach Image",
+   "label": "Image 5"
+  },
+  {
+   "fieldname": "image_fpja",
+   "fieldtype": "Image",
+   "options": "image_5"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-06-06 15:10:18.557850",
+ "modified_by": "Administrator",
+ "module": "Vintrosys",
+ "name": "Gallery",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
