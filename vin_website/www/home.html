@@ -2709,6 +2709,10 @@
     <!-- ===== SCROLL TO TOP ===== -->
     <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">↑</button>
 
+    <script>
+        window.frappe = window.frappe || {};
+        frappe.csrf_token = "{{ frappe.session.csrf_token }}";
+    </script>
     <script src="/assets/vin_website/js/home.js"></script>
 </body>
 
