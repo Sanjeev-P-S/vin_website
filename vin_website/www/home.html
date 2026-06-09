@@ -643,6 +643,77 @@
             }
         }
 
+        /* ── ORBIT ROTATION ── */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .visual-card {
+            position: absolute;
+            background: var(--bg-card);
+            border: 1px solid var(--border-light);
+            border-radius: var(--radius-md);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: .78rem;
+            font-weight: 600;
+            color: var(--text-heading);
+            box-shadow: var(--shadow-md);
+            white-space: nowrap;
+            z-index: 10;
+            /* Magnetic rotation trick */
+            offset-path: circle(180px);
+            animation: orbit-path 25s linear infinite;
+        }
+
+        @keyframes orbit-path {
+            from {
+                offset-distance: 0%;
+            }
+
+            to {
+                offset-distance: 100%;
+            }
+        }
+
+        /* Staggered start positions for 5 cards */
+        .vc-1 {
+            animation-delay: 0s;
+        }
+
+        .vc-2 {
+            animation-delay: -5s;
+        }
+
+        .vc-3 {
+            animation-delay: -10s;
+        }
+
+        .vc-4 {
+            animation-delay: -15s;
+        }
+
+        .vc-5 {
+            animation-delay: -20s;
+        }
+
+        /* Ensure cards don't rotate with the path */
+        .visual-card {
+            offset-rotate: 0deg;
+        }
+
+        .visual-card:hover {
+            animation-play-state: paused;
+            border-color: var(--brand-primary);
+            box-shadow: var(--shadow-lg);
+            transform: scale(1.1);
+        }
+
         /* ============================================================
    MARQUEE
    ============================================================ */
@@ -1495,6 +1566,102 @@
         .scroll-top:hover {
             transform: translateY(-4px) scale(1.1);
             box-shadow: var(--shadow-lg);
+            background: var(--brand-secondary);
+        }
+
+        /* ── NEW PREMIUM HOVER EFFECTS ── */
+        .btn-primary {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            transition: 0.5s;
+            left: -150%;
+        }
+
+        .btn-primary:hover::after {
+            left: 150%;
+        }
+
+        .service-card {
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(79, 110, 247, 0.25);
+        }
+
+        .service-card:hover .service-icon {
+            animation: icon-bounce 0.5s ease infinite alternate;
+        }
+
+        @keyframes icon-bounce {
+            from {
+                transform: translateY(0);
+            }
+
+            to {
+                transform: translateY(-5px);
+            }
+        }
+
+        .member-card:hover .member-img {
+            transform: scale(1.1);
+            border-color: var(--brand-secondary);
+        }
+
+        .member-card .member-img {
+            transition: transform 0.4s ease;
+        }
+
+        /* Continuous Floating Animation for all 'reveal' cards after they appear */
+        .revealed.reveal-card,
+        .revealed.service-card,
+        .revealed.erp-module,
+        .revealed.blog-card {
+            animation: continuous-float 6s ease-in-out infinite;
+            animation-delay: var(--delay, 0s);
+        }
+
+        @keyframes continuous-float {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Hero Central Orb pulse enhancement */
+        .orb-core {
+            animation: orb-glow 3s ease-in-out infinite !important;
+        }
+
+        @keyframes orb-glow {
+
+            0%,
+            100% {
+                box-shadow: 0 0 30px rgba(79, 110, 247, .4);
+                transform: translate(-50%, -50%) scale(1);
+            }
+
+            50% {
+                box-shadow: 0 0 60px rgba(79, 110, 247, .7);
+                transform: translate(-50%, -50%) scale(1.1);
+            }
         }
 
         /* ============================================================
@@ -1530,7 +1697,25 @@
         .reveal-up.revealed,
         .reveal-card.revealed {
             opacity: 1;
-            transform: translateX(0) translateY(0);
+            transform: translateX(0) translateY(0) scale(1);
+        }
+
+        .reveal-card {
+            transform: translateY(30px) scale(0.95);
+            transition: opacity 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        /* ── SCROLL PROGRESS BAR ── */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--brand-primary), var(--brand-secondary), var(--accent-teal));
+            z-index: 9999;
+            width: 0;
+            transition: width 0.1s ease;
+            box-shadow: 0 0 10px rgba(79, 110, 247, 0.5);
         }
 
         /* ── ENTRY ANIMATIONS (hero) ── */
@@ -1913,6 +2098,12 @@
                 height: 260px;
             }
 
+            .visual-card {
+                offset-path: circle(100px);
+                font-size: 0.65rem;
+                padding: 8px 12px;
+            }
+
             .footer-content {
                 grid-template-columns: 1fr;
             }
@@ -1962,14 +2153,13 @@
             max-width: 70px !important;
         }
 
-        .reveal-card {
-            opacity: 1 !important;
-            transform: none !important;
-        }
+        /* Removed reveal-card override to allow JS animations to work */
     </style>
 </head>
 
 <body>
+
+    <div class="scroll-progress" id="scrollProgress"></div>
 
     <!-- ===== NAVBAR ===== -->
     <nav class="navbar" id="navbar">
@@ -2005,21 +2195,21 @@
             <div class="shape shape-4"></div>
         </div>
         <div class="hero-content">
-            <div class="hero-badge animate-pop">
+            <div class="hero-badge reveal-up">
                 <span class="badge-dot"></span> Trusted ERP Experts
             </div>
-            <h1 class="hero-title animate-left">
+            <h1 class="hero-title reveal-left">
                 Your Vision <br /><span class="gradient-text">Our Solution</span> 🚀
             </h1>
-            <p class="hero-subtitle animate-left delay-1">
+            <p class="hero-subtitle reveal-left" style="transition-delay: 0.1s">
                 Experts of Frappe-based Implementations and Integrations.<br />
                 We achieve digitalization without losing the traditionalism of your business.
             </p>
-            <div class="hero-actions animate-left delay-2">
+            <div class="hero-actions reveal-left" style="transition-delay: 0.2s">
                 <a href="#contact" class="btn-primary">Contact Us</a>
                 <a href="#services" class="btn-outline">Explore Services</a>
             </div>
-            <div class="hero-stats animate-up delay-3">
+            <div class="hero-stats reveal-up" style="transition-delay: 0.3s">
                 <div class="stat-item">
                     <span class="stat-num" data-target="80">0</span><span>+</span>
                     <span class="stat-label">Projects Completed</span>
@@ -2036,7 +2226,7 @@
                 </div>
             </div>
         </div>
-        <div class="hero-visual animate-right">
+        <div class="hero-visual reveal-right">
             <div class="visual-card vc-1">
                 <div class="vc-icon">📊</div>
                 <div class="vc-text">Real-time Analytics</div>
@@ -2048,6 +2238,14 @@
             <div class="visual-card vc-3">
                 <div class="vc-icon">🔗</div>
                 <div class="vc-text">Seamless Integration</div>
+            </div>
+            <div class="visual-card vc-4">
+                <div class="vc-icon">🛠️</div>
+                <div class="vc-text">Custom Development</div>
+            </div>
+            <div class="visual-card vc-5">
+                <div class="vc-icon">📈</div>
+                <div class="vc-text">Report & Dashboard</div>
             </div>
             <div class="central-orb">
                 <div class="orb-ring ring-1"></div>

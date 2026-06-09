@@ -16,6 +16,35 @@ document.addEventListener('DOMContentLoaded', function () {
         }, i * 80);
     });
 
+    // =========================================================
+    // 0. BACKGROUND PARTICLES
+    // =========================================================
+    const particlesContainer = document.getElementById('particles');
+    if (particlesContainer) {
+        const particleCount = 20;
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+
+            // Random properties
+            const size = Math.random() * 5 + 2;
+            const left = Math.random() * 100;
+            const duration = Math.random() * 10 + 10;
+            const delay = Math.random() * 10;
+            const opacity = Math.random() * 0.3 + 0.1;
+
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${left}%`;
+            particle.style.animationDuration = `${duration}s`;
+            particle.style.animationDelay = `${delay}s`;
+            particle.style.opacity = opacity;
+            particle.style.background = i % 2 === 0 ? 'var(--brand-primary)' : 'var(--brand-secondary)';
+
+            particlesContainer.appendChild(particle);
+        }
+    }
+
     // Smooth scroll on nav link click
     navItems.forEach(link => {
         link.addEventListener('click', function (e) {
@@ -42,16 +71,38 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Scroll: navbar shadow + active link
+    // Scroll: navbar shadow + active link + progress bar + bg shift
     window.addEventListener('scroll', () => {
         if (navbar) {
-            navbar.classList.toggle('scrolled', window.scrollY > 50);
+            const isScrolled = window.scrollY > 50;
+            navbar.classList.toggle('scrolled', isScrolled);
+            navbar.style.transform = isScrolled ? 'scale(0.98)' : 'scale(1)';
         }
+
+        // Background Tone Shift
+        const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+        const hue = 220 + (scrollPercent * 30); // Shift from 220 to 250
+        document.body.style.backgroundColor = `hsl(${hue}, 40%, 98%)`;
+
+        // Scroll Progress Bar
+        const scrollProgress = document.getElementById('scrollProgress');
+        if (scrollProgress) {
+            const totalScroll = document.documentElement.scrollHeight - window.innerHeight;
+            const progress = (window.scrollY / totalScroll) * 100;
+            scrollProgress.style.width = progress + '%';
+        }
+
+        // Hero Parallax (Subtle)
+        const shapes = document.querySelectorAll('.shape');
+        shapes.forEach((shape, i) => {
+            const speed = 0.05 + (i * 0.02);
+            shape.style.transform = `translateY(${window.scrollY * speed}px)`;
+        });
 
         // Active link highlighting
         let current = '';
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - (navbar ? navbar.offsetHeight : 72) - 20;
+            const sectionTop = section.offsetTop - (navbar ? navbar.offsetHeight : 72) - 150;
             if (window.scrollY >= sectionTop) {
                 current = section.getAttribute('id');
             }
@@ -87,7 +138,9 @@ document.addEventListener('DOMContentLoaded', function () {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('revealed');
-                    revealObserver.unobserve(entry.target);
+                } else {
+                    // Optional: remove if you want them to hide again when scrolling away
+                    entry.target.classList.remove('revealed');
                 }
             });
         }, { threshold: 0.12 });
@@ -104,17 +157,25 @@ document.addEventListener('DOMContentLoaded', function () {
     const statNums = document.querySelectorAll('.stat-num[data-target]');
     if (statNums.length > 0) {
         const animateCounter = (el) => {
+            if (el.dataset.animating === 'true') return;
+            el.dataset.animating = 'true';
+
             const target = parseInt(el.getAttribute('data-target'), 10);
             let current = 0;
-            const increment = Math.ceil(target / 60); // ~60 steps
+            const duration = 2000; // 2 seconds
+            const steps = 60;
+            const increment = target / steps;
+            const stepTime = duration / steps;
+
             const timer = setInterval(() => {
                 current += increment;
                 if (current >= target) {
                     current = target;
                     clearInterval(timer);
+                    el.dataset.animating = 'false';
                 }
-                el.textContent = current;
-            }, 25);
+                el.textContent = Math.floor(current);
+            }, stepTime);
         };
 
         if ('IntersectionObserver' in window) {
@@ -122,7 +183,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         animateCounter(entry.target);
-                        counterObserver.unobserve(entry.target);
+                    } else {
+                        // Reset when out of view if you want it to re-run
+                        entry.target.textContent = '0';
+                        entry.target.dataset.animating = 'false';
                     }
                 });
             }, { threshold: 0.5 });
@@ -211,5 +275,23 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
+
+    // =========================================================
+    // 5. MAGNETIC BUTTONS (Premium Feel)
+    // =========================================================
+    const magneticBtns = document.querySelectorAll('.btn-primary, .btn-outline, .nav-cta, .service-btn');
+    magneticBtns.forEach(btn => {
+        btn.addEventListener('mousemove', function (e) {
+            const position = btn.getBoundingClientRect();
+            const x = e.pageX - position.left - position.width / 2;
+            const y = e.pageY - position.top - position.height / 2;
+
+            btn.style.transform = `translate(${x * 0.3}px, ${y * 0.5}px) scale(1.05)`;
+        });
+
+        btn.addEventListener('mouseout', function () {
+            btn.style.transform = 'translate(0px, 0px) scale(1)';
+        });
+    });
 
 });
