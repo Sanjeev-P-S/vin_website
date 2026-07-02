@@ -295,5 +295,56 @@ fixtures = [
                 ]
             ]
         ]
-    }
+    },
+    {
+        "doctype": "Builder Page",
+        "filters": [
+            [
+                "name",
+                "in",
+                [
+                    "page-a1ae51a9",
+                    "page-50eb3c51"
+                ]
+            ]
+        ]
+    },
+
+    # Only if you've created reusable components
+    {
+        "doctype": "Builder Component"
+    },
+
+    # Only if used
+    {
+        "doctype": "Builder Variable"
+    },
+
+    {
+        "doctype": "Builder Project Folder"
+    },
+
+    {
+        "doctype": "User Font"
+    },
+    {
+        "doctype": "Builder Client Script",
+        "filters": [
+            [
+                "name",
+                "in",
+                [
+                    "JavaScript-counter",
+                    "CSS-Slider",
+                    "CSS-42843",
+                    "JavaScript-5cc86"
+                ]
+            ]
+        ]
+    },
+
+    {
+        "doctype": "Block Template"
+    },
+    
 ]

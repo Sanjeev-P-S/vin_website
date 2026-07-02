@@ -1,0 +1,82 @@
+[
+ {
+  "builder_script": "CSS-Slider",
+  "docstatus": 0,
+  "doctype": "Builder Page Client Script",
+  "modified": "2026-07-01 14:01:11.690476",
+  "name": "1iaudtdkne",
+  "parent": "page-a1ae51a9",
+  "parentfield": "client_scripts",
+  "parenttype": "Builder Page"
+ },
+ {
+  "builder_script": "JavaScript-5cc86",
+  "docstatus": 0,
+  "doctype": "Builder Page Client Script",
+  "modified": "2026-07-01 11:04:10.195397",
+  "name": "omef06nju0",
+  "parent": "page-50eb3c51",
+  "parentfield": "client_scripts",
+  "parenttype": "Builder Page"
+ },
+ {
+  "builder_script": "JavaScript-counter",
+  "docstatus": 0,
+  "doctype": "Builder Page Client Script",
+  "modified": "2026-07-01 14:01:11.690476",
+  "name": "1f14fqvk4v",
+  "parent": "page-a1ae51a9",
+  "parentfield": "client_scripts",
+  "parenttype": "Builder Page"
+ },
+ {
+  "builder_script": "CSS-42843",
+  "docstatus": 0,
+  "doctype": "Builder Page Client Script",
+  "modified": "2026-07-01 14:01:11.690476",
+  "name": "sj04l7vid1",
+  "parent": "page-a1ae51a9",
+  "parentfield": "client_scripts",
+  "parenttype": "Builder Page"
+ },
+ {
+  "builder_script": "CSS-Slider",
+  "docstatus": 0,
+  "doctype": "Builder Page Client Script",
+  "modified": "2026-07-01 15:39:53.037919",
+  "name": "2j9sb7g22u",
+  "parent": "page-a1ae51a9",
+  "parentfield": "client_scripts",
+  "parenttype": "Builder Page"
+ },
+ {
+  "builder_script": "JavaScript-5cc86",
+  "docstatus": 0,
+  "doctype": "Builder Page Client Script",
+  "modified": "2026-07-01 15:39:53.099894",
+  "name": "2ja21qvfv8",
+  "parent": "page-50eb3c51",
+  "parentfield": "client_scripts",
+  "parenttype": "Builder Page"
+ },
+ {
+  "builder_script": "JavaScript-counter",
+  "docstatus": 0,
+  "doctype": "Builder Page Client Script",
+  "modified": "2026-07-01 15:39:53.039146",
+  "name": "2j9mogad3q",
+  "parent": "page-a1ae51a9",
+  "parentfield": "client_scripts",
+  "parenttype": "Builder Page"
+ },
+ {
+  "builder_script": "CSS-42843",
+  "docstatus": 0,
+  "doctype": "Builder Page Client Script",
+  "modified": "2026-07-01 15:39:53.039953",
+  "name": "2j9igjd22c",
+  "parent": "page-a1ae51a9",
+  "parentfield": "client_scripts",
+  "parenttype": "Builder Page"
+ }
+]

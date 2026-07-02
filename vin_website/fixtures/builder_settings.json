@@ -1,0 +1,22 @@
+[
+ {
+  "ai_api_key": null,
+  "auto_convert_images_to_webp": 1,
+  "body_html": null,
+  "default_language": "en",
+  "disable_auto_dark_mode": 0,
+  "docstatus": 0,
+  "doctype": "Builder Settings",
+  "execute_block_scripts_in_editor": "Restricted",
+  "favicon": null,
+  "head_html": null,
+  "home_page": null,
+  "modified": "2026-06-16 14:08:28.879145",
+  "name": "Builder Settings",
+  "restrict_click_handlers": 1,
+  "script": null,
+  "script_public_url": "",
+  "style": null,
+  "style_public_url": ""
+ }
+]

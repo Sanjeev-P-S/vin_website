@@ -1,0 +1,38 @@
+[
+ {
+  "docstatus": 0,
+  "doctype": "Builder Client Script",
+  "modified": "2026-06-30 15:26:38.372116",
+  "name": "JavaScript-5cc86",
+  "public_url": "/files/page_scripts/JavaScript-5cc86-493a2c76fd.js?v=13aa00e1fc",
+  "script": "const galleryData = [ \n    { \n        \"title\": \"Frappeverse\", \n        \"description\": \"a monthly event\", \n        \"image_1\": \"/files/Screenshot (52).png\", \n        \"image_2\": \"/private/files/Screenshot (51).png\", \n        \"image_3\": \"/files/Screenshot (54).png\", \n        \"image_4\": \"/files/Screenshot (57).png\", \n        \"image_5\": \"/files/Screenshot (57).png\" \n    }, \n    { \n        \"title\": \"Frappebuild\", \n        \"description\": \"a event to be cherish the frappe users\", \n        \"image_1\": \"/files/Screenshot 2025-10-07 163423.png\", \n        \"image_2\": \"/files/Screenshot 2026-06-27 164142.png\", \n        \"image_3\": \"/files/Screenshot 2025-11-06 012004.png\", \n        \"image_4\": \"/files/Screenshot (15).png\", \n        \"image_5\": \"/files/kanp model.png\" \n    } \n];\n\ndocument.addEventListener(\"DOMContentLoaded\", function() {\n    // 1. Get the current title from the URL path segment\n    const pathSegments = window.location.pathname.split(\"/\").filter(segment => segment !== \"\");\n    const urlTitle = pathSegments[pathSegments.length - 1]; \n    if (!urlTitle) return;\n\n    const targetTitle = decodeURIComponent(urlTitle).toLowerCase();\n\n    // 2. Find matching data block\n    const matchedGallery = galleryData.find(item => item.title.toLowerCase() === targetTitle);\n\n    if (matchedGallery) {\n        // 3. Directly update the title and description elements via ID\n        const titleEl = document.getElementById(\"title\");\n        const descEl = document.getElementById(\"description\");\n\n        if (titleEl) titleEl.innerText = matchedGallery.title;\n        if (descEl) descEl.innerText = matchedGallery.description;\n\n        // 4. Map the data images directly onto your 5 placeholder elements\n        for (let i = 1; i <= 5; i++) {\n            const imgEl = document.getElementById(`image_${i}`);\n            const imagePath = matchedGallery[`image_${i}`];\n\n            if (imgEl) {\n                if (imagePath && imagePath.trim() !== \"\") {\n                    imgEl.src = imagePath;\n                    imgEl.alt = `${matchedGallery.title} Gallery - Image ${i}`;\n                    imgEl.style.display = \"block\"; // Ensure it is visible if data exists\n                } else {\n                    imgEl.style.display = \"none\"; // Hide placeholder if no image exists in data\n                }\n            }\n        }\n    } else {\n        // Fallback UI if item is missing\n        const titleEl = document.getElementById(\"title\");\n        if (titleEl) titleEl.innerText = \"Gallery Not Found\";\n    }\n});\n",
+  "script_type": "JavaScript"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Builder Client Script",
+  "modified": "2026-06-19 12:06:14.137538",
+  "name": "CSS-Slider",
+  "public_url": "/files/page_styles/CSS-a95c1-36d4e2aa03.css?v=9dc6deb2a7",
+  "script": ".slider-wrapper {\n    overflow-x: hidden;\n}\n\n.slider-track {\n    animation: sliderMove 25s linear infinite;\n    will-change: transform;\n}\n\n.slider-track:hover {\n    animation-play-state: paused;\n}\n\n.slider-track img {\n    transition: transform 0.3s ease;\n}\n\n.slider-track img:hover {\n    transform: scale(1.05);\n}\n\n@keyframes sliderMove {\n    from {\n        transform: translateX(0);\n    }\n\n    to {\n        transform: translateX(-50%);\n    }\n}",
+  "script_type": "CSS"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Builder Client Script",
+  "modified": "2026-06-22 11:25:14.877784",
+  "name": "CSS-42843",
+  "public_url": "/files/page_styles/CSS-42843-928d7da4e6.css?v=2ae601954f",
+  "script": "html {\n    scroll-behavior: smooth;\n}\nnav,\n.navbar {\n    position: sticky;\n    top: 0;\n    z-index: 1000;\n    background: white;\n    box-shadow: 0 2px 10px rgba(0,0,0,0.08);\n}",
+  "script_type": "CSS"
+ },
+ {
+  "docstatus": 0,
+  "doctype": "Builder Client Script",
+  "modified": "2026-07-01 10:57:21.261581",
+  "name": "JavaScript-counter",
+  "public_url": "/files/page_scripts/JavaScript-55de9-38f8c41a4f.js?v=b785e6cb12",
+  "script": "function animateCounter(element, target) {\n    let current = 0;\n\n    const timer = setInterval(() => {\n        current+=1;\n\n        element.textContent = current + \"+\";\n\n        if (current >= target) {\n            clearInterval(timer);\n        }\n    }, 25);\n}\n\nconst observer = new IntersectionObserver((entries) => {\n    entries.forEach((entry) => {\n        if (!entry.isIntersecting) return;\n\n        if (entry.target.classList.contains(\"company-counter\")) {\n            animateCounter(entry.target, 60);\n        }\n\n        if (entry.target.classList.contains(\"project-counter\")) {\n            animateCounter(entry.target, 70);\n        }\n\n        observer.unobserve(entry.target);\n    });\n});\n\ndocument.querySelectorAll(\".company-counter, .project-counter\")\n    .forEach(el => observer.observe(el));\n\ndocument.addEventListener(\"DOMContentLoaded\", () => {\n    const form = document.getElementById(\"enquiry-form\");\n    if (!form) return;\n\n    const button = form.querySelector(\"button\");\n\n    button.addEventListener(\"click\", async (e) => {\n        e.preventDefault();\n\n        const formData = new FormData(form);\n\n        // Required field validation\n        if (!formData.get(\"name\")?.trim()) {\n            frappe.msgprint(\"Please enter your name.\");\n            return;\n        }\n\n        if (!formData.get(\"email\")?.trim()) {\n            frappe.msgprint(\"Please enter your email.\");\n            return;\n        }\n\n        if (!formData.get(\"phone\")?.trim()) {\n            frappe.msgprint(\"Please enter your phone number.\");\n            return;\n        }\n\n        // Disable button to prevent duplicate submissions\n        button.disabled = true;\n        const originalText = button.innerHTML;\n        button.innerHTML = \"Submitting...\";\n\n        try {\n            const response = await fetch(\"/api/method/vin_website.api.submit_enquiry\", {\n                method: \"POST\",\n                headers: {\n                    \"X-Frappe-CSRF-Token\": frappe.csrf_token\n                },\n                body: new URLSearchParams(formData)\n            });\n\n            const result = await response.json();\n\n            console.log(result);\n\n            if (response.ok && result.message?.status === \"success\") {\n                frappe.show_alert({\n                    message: \"Enquiry submitted successfully!\",\n                    indicator: \"green\"\n                });\n\n                form.reset();\n            } else {\n                frappe.msgprint({\n                    title: \"Submission Failed\",\n                    message: result.message?.message || \"Unable to submit your enquiry. Please try again.\",\n                    indicator: \"red\"\n                });\n            }\n        } catch (error) {\n            console.error(error);\n\n            frappe.msgprint({\n                title: \"Network Error\",\n                message: \"Something went wrong while submitting the enquiry. Please try again.\",\n                indicator: \"red\"\n            });\n        } finally {\n            // Re-enable button\n            button.disabled = false;\n            button.innerHTML = originalText;\n        }\n    });\n});",
+  "script_type": "JavaScript"
+ }
+]
