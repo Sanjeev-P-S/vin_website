@@ -12,6 +12,22 @@ bench get-app $URL_OF_THIS_REPO --branch vin_web
 bench install-app vin_website
 ```
 
+
+### Website
+
+This application provides the official Vintrosys website with the following features:
+
+* Responsive website built using Frappe Builder.
+
+* Dynamic content management through custom DocTypes.
+
+* Server-side APIs for rendering and managing website data.
+
+* Dedicated sections for Home, About Us, Services, Products, Gallery, and Contact.
+
+* Easy content updates without modifying the website code.
+
+  
 ### Contributing
 
 This app uses `pre-commit` for code formatting and linting. Please [install pre-commit](https://pre-commit.com/#installation) and enable it for this repository:
